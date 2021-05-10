@@ -8,7 +8,7 @@ on:
     - cron: "30 2 * * *"
     
 env:
-  TEST_VALUE: ${{ secrets.TECHNEWS_WEBHOOK_URL }}
+  TECHNEWS_WEBHOOK_URL: ${{ secrets.TECHNEWS_WEBHOOK_URL }}
 
 jobs:
   build:
@@ -29,6 +29,7 @@ jobs:
       run: |
         touch .env
         echo TECHNEWS_WEBHOOK_URL = ${{ secrets.TECHNEWS_WEBHOOK_URL }} >> .env
-    - run: npm install && node dev.js
+    - run: npm install 
+    - run: node dev.js
       env:
-        WEBHOOK_URL: ${{ secrets.TECHNEWS_WEBHOOK_URL }}
+        TECHNEWS_WEBHOOK_URL: ${{ secrets.TECHNEWS_WEBHOOK_URL }}
