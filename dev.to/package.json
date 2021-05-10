@@ -1,0 +1,18 @@
+{
+    "name": "dev.to-webhook",
+    "private": "true",
+    "version": "1.0.0",
+    "description": "A Discord webhook that posts the top DEV.to article every day.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node index.js"
+    },
+    "author": "Khaleel Gibran <khalby786@gmail.com>",
+    "license": "ISC",
+    "dependencies": {
+      "discord-webhook-node": "^1.1.8",
+      "node-fetch": "^2.6.1"
+    }
+  }
+  
