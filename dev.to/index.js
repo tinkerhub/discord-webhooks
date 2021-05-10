@@ -1,5 +1,5 @@
 // webhook URL - DO NOT LEAK
-const webhook = process.env.WEBHOOK_URL;
+const webhook = process.env.TECHNEWS_WEBHOOK_URL;
 const { Webhook, MessageBuilder } = require('discord-webhook-node');
 const hook = new Webhook(webhook);
 const fetch = require("node-fetch");
