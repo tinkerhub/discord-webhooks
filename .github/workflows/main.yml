@@ -29,6 +29,6 @@ jobs:
       run: |
         touch .env
         echo WEBHOOK_URL = ${{ secrets.TECHNEWS_WEBHOOK_URL }} >> .env
-    - run: cd dev.to && npm ci && node index.js
+    - run: cd dev.to && npm install && node index.js
       env:
         WEBHOOK_URL: ${{ secrets.TECHNEWS_WEBHOOK_URL }}
