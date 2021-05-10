@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: create env file
       run: |
-        touch .env
+        cd dev.to && touch .env
         echo TECHNEWS_WEBHOOK_URL = ${{ secrets.TECHNEWS_WEBHOOK_URL }} >> .env
     - run: cd dev.to && npm install && node index.js
       env:
