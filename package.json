@@ -1,12 +1,10 @@
 {
-    "name": "dev.to-webhook",
+    "name": "tinkerhub-webhook",
     "private": "true",
     "version": "1.0.0",
-    "description": "A Discord webhook that posts the top DEV.to article every day.",
-    "main": "index.js",
+    "description": "Webhooks used in various channels of the TinkerHub Discord server.",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node index.js"
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Khaleel Gibran <khalby786@gmail.com>",
     "license": "ISC",
