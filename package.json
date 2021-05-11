@@ -1,16 +1,15 @@
 {
-    "name": "tinkerhub-webhook",
-    "private": "true",
-    "version": "1.0.0",
-    "description": "Webhooks used in various channels of the TinkerHub Discord server.",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Khaleel Gibran <khalby786@gmail.com>",
-    "license": "ISC",
-    "dependencies": {
-      "discord-webhook-node": "^1.1.8",
-      "node-fetch": "^2.6.1"
-    }
+  "name": "tinkerhub-webhook",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "Webhooks used in various channels of the TinkerHub Discord server.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Khaleel Gibran <khalby786@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "discord-webhook-node": "^1.1.8",
+    "node-fetch": "^2.6.1"
   }
-  
+}
