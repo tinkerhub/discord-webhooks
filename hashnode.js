@@ -25,7 +25,7 @@ async function getTopPost() {
         }
     }`;
   let req = await fetch("https://api.hashnode.com/", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
