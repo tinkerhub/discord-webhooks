@@ -3,6 +3,7 @@ const webhook = process.env.TECHNEWS_WEBHOOK_URL;
 const { Webhook, MessageBuilder } = require("discord-webhook-node");
 const hook = new Webhook(webhook);
 const fetch = require("node-fetch");
+const moment = require("moment");
 
 // Fetch the top articles using DEV.to API
 async function getTopPost() {
@@ -22,12 +23,34 @@ async function getTopPost() {
           coverImage,
           contentMarkdown
         }
-               
     }`;
-  let req = await fetch("https://dev.to/api/articles?top=1");
+  let req = await fetch("https://api.hashnode.com/", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  });
   let res = await req.json();
-  return res[Math.floor(Math.random() * res.length)];
+  // return res.data.storiesFeed[Math.floor(Math.random() * res.data.storiesFeed.length)];
+  return res.data.storiesFeed[0];
 }
+
+getTopPost().then((data) => {
+  const embed = new MessageBuilder()
+    .setTitle(data.title)
+    .setURL(data.author.publicationDomain + "/" + data.slug)
+    .addField(
+      `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")} by ${data.author.name}`,
+      data.tags
+    )
+    .setColor("#9400FF")
+    .setImage(data.coverImage)
+    .setFooter("❤️👍" + data.totalReactions);
+
+  // send embed
+  hook.send(embed);
+});
 
 /*
 
