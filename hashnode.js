@@ -32,8 +32,8 @@ async function getTopPost() {
     body: JSON.stringify({ query }),
   });
   let res = await req.json();
-  // return res.data.storiesFeed[Math.floor(Math.random() * res.data.storiesFeed.length)];
-  return res.data.storiesFeed[0];
+  return res.data.storiesFeed[Math.floor(Math.random() * res.data.storiesFeed.length)];
+  // return res.data.storiesFeed[0];
 }
 
 getTopPost().then((data) => {
