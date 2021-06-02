@@ -40,10 +40,10 @@ getTopPost().then((data) => {
   const embed = new MessageBuilder()
     .setTitle("[HASHNODE] " + data.title)
     .setURL(data.author.publicationDomain + "/" + data.slug)
-    .addField(
-      `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")} by ${data.author.name}`,
-      `by ${data.author.name}`
-    )
+    // .addField(
+    //   `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")} by ${data.author.name}`,
+    //   `by ${data.author.name}`
+    // )
     .setColor("#9400FF")
     .setImage(data.coverImage)
     .setFooter("👍" + data.totalReactions);
