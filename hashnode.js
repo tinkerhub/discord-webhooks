@@ -38,15 +38,16 @@ async function getTopPost() {
 
 getTopPost().then((data) => {
   const embed = new MessageBuilder()
-    .setTitle(data.title)
-    .setURL(data.author.publicationDomain + "/" + data.slug)
-    .addField(
-      `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")} by ${data.author.name}`,
-      data.tags
-    )
-    .setColor("#9400FF")
-    .setImage(data.coverImage)
-    .setFooter("❤️👍" + data.totalReactions);
+    // .setTitle(data.title)
+    // .setURL(data.author.publicationDomain + "/" + data.slug)
+    // .addField(
+    //   `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")} by ${data.author.name}`,
+    //   data.tags
+    // )
+    // .setColor("#9400FF")
+    // .setImage(data.coverImage)
+    // .setFooter("❤️👍" + data.totalReactions);
+    .setTitle("hello test from tinkerhub-org/discord-webhooks")
 
   // send embed
   hook.send(embed);
