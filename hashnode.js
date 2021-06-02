@@ -21,7 +21,8 @@ async function getTopPost() {
           totalReactions,
           dateAdded,
           coverImage,
-          contentMarkdown
+          contentMarkdown,
+          publicationDomain
         }
     }`;
   let req = await fetch("https://api.hashnode.com/", {
@@ -39,7 +40,7 @@ async function getTopPost() {
 getTopPost().then((data) => {
   const embed = new MessageBuilder()
     .setTitle("[HASHNODE] " + data.title)
-    // .setURL(data.author.publicationDomain + "/" + data.slug)
+    .setURL(data.author.publicationDomain + "/" + data.slug)
     // .setURL(data.slug)
 
     .addField(
