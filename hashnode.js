@@ -39,18 +39,22 @@ async function getTopPost() {
 getTopPost().then((data) => {
   const embed = new MessageBuilder()
     .setTitle("[HASHNODE] " + data.title)
-    .setURL(data.author.publicationDomain + "/" + data.slug)
-    // .addField(
-    //   `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")} by ${data.author.name}`,
-    //   `by ${data.author.name}`
-    // )
+    // .setURL(data.author.publicationDomain + "/" + data.slug)
+    // .setURL(data.slug)
+
+    .addField(
+      `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")}`,
+      `by ${data.author.name}`
+    )
     .setColor("#9400FF")
     .setImage(data.coverImage)
     .setFooter("👍" + data.totalReactions);
     // .setTitle("hello test from tinkerhub-org/discord-webhooks")
 
   // send embed
-  hook.send(embed);
+  hook.send(embed).catch(err => {
+    console.error(err);
+  });
 });
 
 /*
