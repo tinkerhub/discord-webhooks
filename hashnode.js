@@ -12,7 +12,8 @@ async function getTopPost() {
         storiesFeed(type: FEATURED) {
           author {
             name,
-            username
+            username,
+            publicationDomain
           }
           slug,
           title,
@@ -22,7 +23,6 @@ async function getTopPost() {
           dateAdded,
           coverImage,
           contentMarkdown,
-          publicationDomain
         }
     }`;
   let req = await fetch("https://api.hashnode.com/", {
