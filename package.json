@@ -3,13 +3,16 @@
   "private": "true",
   "version": "1.0.0",
   "description": "Webhooks used in various channels of the TinkerHub Discord server.",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Khaleel Gibran <khalby786@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "discord-webhook-node": "^1.1.8",
+    "dotenv": "^10.0.0",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.1"
   }

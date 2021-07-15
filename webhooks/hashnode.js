@@ -1,11 +1,19 @@
-// webhook URL - DO NOT LEAK
-const webhook = process.env.TECHNEWS_WEBHOOK_URL;
-const { Webhook, MessageBuilder } = require("discord-webhook-node");
-const hook = new Webhook(webhook);
+// load modules
+require("dotenv").config();
 const fetch = require("node-fetch");
 const moment = require("moment");
+const { Webhook, MessageBuilder } = require("discord-webhook-node");
 
-// Fetch the top articles using DEV.to API
+// webhook URL - DO NOT LEAK
+const webhook = process.env.TECHNEWS_WEBHOOK_URL;
+// const webhook = process.env.DEV_VERSION_WEBHOOK;
+console.log(webhook);
+
+// webhook config
+const hook = new Webhook(webhook);
+hook.setUsername("Hashnode ~ Popular Articles");
+
+// Fetch the top articles using Hashnode GraphQL API
 async function getTopPost() {
   let query = `
     query {
@@ -23,6 +31,7 @@ async function getTopPost() {
           dateAdded,
           coverImage,
           contentMarkdown,
+          brief
         }
     }`;
   let req = await fetch("https://api.hashnode.com/", {
@@ -33,27 +42,30 @@ async function getTopPost() {
     body: JSON.stringify({ query }),
   });
   let res = await req.json();
-  return res.data.storiesFeed[Math.floor(Math.random() * res.data.storiesFeed.length)];
-  // return res.data.storiesFeed[0];
+  return res.data.storiesFeed[
+    Math.floor(Math.random() * res.data.storiesFeed.length)
+  ];
 }
 
 getTopPost().then((data) => {
+  console.log(data);
   const embed = new MessageBuilder()
-    .setTitle("[HASHNODE] " + data.title)
-    .setURL(data.author.publicationDomain + "/" + data.slug)
-    // .setURL(data.slug)
-
-    .addField(
-      `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")}`,
-      `by ${data.author.name}`
-    )
+    .setTitle(data.title)
+    .setURL("https://hashnode.com/post/" + data.slug)
+    .setDescription("**__Excerpt__** ```" + data.brief + "```")
+    .addField(`**__Author__**`, `${data.author.username}`)
     .setColor("#9400FF")
     .setImage(data.coverImage)
-    .setFooter("👍" + data.totalReactions);
-    // .setTitle("hello test from tinkerhub-org/discord-webhooks")
+    .setFooter(
+      "👍 " +
+        data.totalReactions +
+        " reactions · " +
+        `Published on ${moment(data.dateAdded).format("MMMM Do YYYY, h:mm a")}`
+    );
+  // .setTitle("hello test from tinkerhub-org/discord-webhooks")
 
   // send embed
-  hook.send(embed).catch(err => {
+  hook.send(embed).catch((err) => {
     console.error(err);
   });
 });
